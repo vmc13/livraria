@@ -20,12 +20,12 @@ class Livro(models.Model):
     nome = models.CharField(max_length=200)
     autor = models.ManyToManyField(Autor, blank=True)
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE, verbose_name="Categoria")
-    codigo = models.CharField(max_length=20)
+    codigo = models.CharField(max_length=20, verbose_name="Código")
     quantidade = models.IntegerField()
     valor = models.FloatField()
     imagem = models.ImageField(upload_to='livraria/media', blank=True)
     ano = models.IntegerField()
-    descricao = models.TextField()
+    descricao = models.TextField(verbose_name="Descrição")
 
     def __str__(self):
         return self.nome
