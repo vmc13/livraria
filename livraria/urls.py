@@ -8,5 +8,9 @@ urlpatterns = [
     path('livro/<int:id>', views.detalhar_livro, name='detalhar_livro'),
     path('livro/new/', views.cadastrar_livro, name='cadastrar_livro'),
     path('livro/editar/<int:id>/', views.editar_livro, name='editar_livro'),
-    
+    path('buscar_livro', views.buscar_livro, name='buscar_livro'),
+    #rotas do login e logout
+    path('page_login', views.page_login, name='page_login'),
+    path('autenticar_usuario', views.autenticar_usuario, name='autenticar_usuario'),
+    path('logout_usuario', views.logout_usuario, name='logout_usuario'),
 ]

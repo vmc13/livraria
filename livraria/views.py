@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from livraria.models import Autor, Categoria, Livro
 from livraria.forms import LivroForm
+from django.contrib.auth import authenticate, login, logout
 
 
 def listar_autores(request):
@@ -45,3 +46,25 @@ def editar_livro(request, id):
         form = LivroForm(instance=livro)
     return render(request, 'livraria/editar_livro.html', {'form': form})
 
+def buscar_livro(request):
+    infor = request.POST['infor']
+    livros = Livro.objects.filter(nome__contains=infor)
+    return render(request, 'livraria/listar_livros.html', {'livros':livros})
+
+def page_login(request):
+    return render(request, 'livraria/login.html',{})
+
+def autenticar_usuario(request):
+    username = request.POST['username']
+    password = request.POST['password']
+    user = authenticate(request, username=username, password=password)
+    if user is not None:
+        login(request, user)
+        livros = Livro.objects.all()
+        return render(request, 'livraria/listar_livros.html', {'livros':livros})
+    else:
+        return render(request, 'livraria/login.html',{})
+    
+def logout_usuario(request):
+    logout(request)
+    return render(request, 'livraria/login.html',{})

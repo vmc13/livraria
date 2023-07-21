@@ -1,13 +1,19 @@
 {% extends 'livraria/base.html' %}
 
 {% block content %}
-    <br>
-    <h2>Novo livro</h2> <br>
-    <form method="POST" class="table" enctype="multipart/form-data">
-    {% csrf_token %}
-        <div class="form-group">
-            {{ form.as_p }}
-         </div>
-        <button type="submit" class="save btn btn-default">Save</button>
-    </form>
+    {% if user.is_authenticated %}
+        <br>
+        <h2>Novo livro</h2> <br>
+        <form method="POST" class="table" enctype="multipart/form-data">
+        {% csrf_token %}
+            <div class="form-group">
+                {{ form.as_p }}
+            </div>
+            <button type="submit" class="save btn btn-default">Save</button>
+        </form>
+    {% else %}
+        <br>
+        <h3>Você precisa logar para cadastrar um livro!</h3>
+    {% endif %}
+    
 {% endblock %}
