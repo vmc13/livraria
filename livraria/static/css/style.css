@@ -1,0 +1,19 @@
+/* Base -> navbar  */
+.nav-link{
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.navbar-brand{
+    font-size: 20px;
+    font-weight: 600;
+}
+
+/* Listar livros  */
+.autores{
+    display: flex;
+}
+
+.content_autores{
+    margin-left: 0.5rem;
+}

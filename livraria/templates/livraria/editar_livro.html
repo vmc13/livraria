@@ -3,7 +3,7 @@
 {% block content %}
     {% if user.is_authenticated %}
         <br>
-        <h2>Novo livro</h2> <br>
+        <h2>Adicionar novo livro</h2>
         <form method="POST" class="table" enctype="multipart/form-data">
         {% csrf_token %}
             <div class="form-group">
@@ -12,8 +12,8 @@
             <button type="submit" class="save btn btn-default">Save</button>
         </form>
     {% else %}
-        <br>
-        <h3>Você precisa logar para cadastrar um livro!</h3>
+        <br><br>
+        <h4 style="text-align: center; color: red;">&nbsp;&nbsp;Você precisa realizar o login <br>para cadastrar um livro!</h4>
     {% endif %}
     
 {% endblock %}

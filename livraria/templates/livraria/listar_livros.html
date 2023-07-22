@@ -2,30 +2,44 @@
 {% block content %}
 <br>
     {% if user.is_authenticated %}
-        <h3>Hello my friend {{user.username}}</h3>
+    <br>
+        <h5 style="text-align: center; color: blue;">&nbsp;&nbsp;&nbsp;Olá {{user.username}}!</h5><br>
     {% else %}
-        <p>Você precisa realiar o login</p>
+        <br>
+        <h4 style="text-align: center; color: red;">&nbsp;&nbsp;Você precisa realizar o login!</h4>
+        <br>
     {% endif %}
-    <table class="table">
+    <table class="table table-borderles">
         {% for livro in livros %}
             <tr>
                 <td>
-                    Nome: {{ livro.nome }}<br/>
-                    Ano: {{ livro.ano }}<br/>
-                    Valor: {{ livro.valor }}<br/>
                     <a href="{% url 'detalhar_livro' id=livro.id %}">
                         <img height="300" width="200" src="{{ livro.imagem.url }}">
                     </a>
-                    <br/>
-                    Autores: <br/>
-                    {% for nome in livro.autor.all %}
-                        {{ nome }}<br/>
-                    {% endfor %}
+                </td>
+                <td>
+                    <h2>{{ livro.nome }}</h2>
+                    <h5>{{ livro.ano }}</h5>
+                    <div class="autores">
+                        <div class="title_autores">
+                            <h5>Autores:</h5>
+                        </div>
+                        <div class="content_autores">
+                            <h5>
+                                {% for nome in livro.autor.all %}
+                                    {{ nome }}<br/>
+                                {% endfor %}
+                            </h5>
+                        </div>
+                    </div>
+                    <h4>
+                        R${{ livro.valor }}
+                    </h4>
                 </td>
                 {% if user.is_authenticated %}
                 <td>
                     <a class="btn btn-default" href="{% url 'editar_livro' id=livro.id %}">
-                        <button type="button" class="btn btn-danger">Editar</button>
+                        <button type="button" class="btn btn-primary">Editar</button>
                     </a>
                 </td>
                 {% endif %}
